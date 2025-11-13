@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Mind Studio - Digital Growth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #007bff;
+      --color-secondary: #003cff;
+      --color-accent: #ff6b6b; /* Soft Red/Coral */
+      --color-highlight: #ffc107; /* Yellow for text highlights */
+      --color-text-light: #f0f7ff;
+      --color-bg-dark: #002a70;
+      --color-card-bg: rgba(255, 255, 255, 0.15); /* More prominent card background */
+      --font-family: 'Outfit', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-family);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-secondary) 50%, var(--color-primary) 100%);
+      color: var(--color-text-light);
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* --- Keyframes Overload --- */
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(60px) scale(0.95);}
+      to {opacity: 1; transform: translateY(0) scale(1);}
+    }
+
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    
+    @keyframes pulseShadow {
+        0% {box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);}
+        50% {box-shadow: 0 0 20px var(--color-accent);}
+        100% {box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);}
+    }
+
+    /* --- Header & Navigation --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
+      border-bottom: 2px solid var(--color-accent);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: fadeDown 1s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    header img {
+      height: 45px;
+      width: 45px;
+      border-radius: 10px;
+      object-fit: cover;
+      animation: pulseShadow 4s infinite ease-in-out;
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    
+    header img:hover {
+        transform: rotate(360deg) scale(1.1);
+    }
+    
+    .logo-container span {
+        margin-left: 12px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    nav a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      transition: all 0.3s ease-out;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background-color: var(--color-highlight);
+      transform-origin: bottom right;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    nav a:hover {
+      color: var(--color-highlight);
+      transform: translateY(-4px);
+    }
+    
+    nav a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    /* --- Language Switcher --- */
+    .lang-switcher {
+        margin-left: 30px;
+        position: relative;
+    }
+    
+    .lang-switcher button {
+        background: var(--color-accent);
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+    
+    .lang-switcher button:hover {
+        background: #e65c5c;
+        transform: scale(1.05);
+    }
+
+
+    /* --- Sections & Animation --- */
+    section {
+      padding: 120px 10%;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden; /* For inner animations */
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Highlight & Bolding --- */
+    .highlight {
+        background-color: var(--color-highlight);
+        color: var(--color-bg-dark);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 700;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    strong {
+        font-weight: 700;
+        color: var(--color-highlight);
+    }
+
+    /* --- Typography & Headings --- */
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900;
+      margin-bottom: 25px;
+      background: linear-gradient(to right, #fff, var(--color-text-light), var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #ffffff, var(--color-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: var(--color-text-light);
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      font-weight: 400;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: 90vh;
+      background: radial-gradient(circle at top left, rgba(0, 60, 255, 0.4), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(255, 107, 107, 0.2), transparent 60%),
+                  rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--color-bg-light);
+      margin-top: 15px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* --- Team Section (New Styles) --- */
+    #team {
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        padding-top: 80px;
+        padding-bottom: 80px;
+        border-bottom: 2px solid var(--color-accent);
+    }
+    
+    .team-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 50px;
+    }
+    
+    .team-card {
+        background: var(--color-card-bg);
+        padding: 30px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--color-highlight);
+    }
+    
+    .team-card h3 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+        color: var(--color-accent);
+        font-weight: 800;
+    }
+    
+    .team-card h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: var(--color-highlight);
+        font-weight: 500;
+    }
+    
+    .team-card p {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+    }
+
+    /* --- Services Section (Grid Layout) --- */
+    #services {
+        background-color: var(--color-bg-dark);
+        padding-bottom: 150px;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+        text-align: left;
+    }
+    
+    .service-card {
+        background: var(--color-card-bg);
+        padding: 35px;
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+    }
+    
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: linear-gradient(90deg, var(--color-highlight), var(--color-accent));
+        transition: height 0.4s ease;
+        z-index: 1;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .service-card:hover::before { 
+        height: 8px; 
+    }
+    
+    .service-card h3 {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+        color: var(--color-highlight);
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .service-card p {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+
+    /* --- Contact Section (Button Styling) --- */
+    .contact {
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+      border-top: 4px solid var(--color-highlight);
+      padding-bottom: 80px;
+    }
+
+    .contact a {
+      display: inline-block;
+      color: #fff;
+      background: var(--color-accent);
+      padding: 16px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 20px 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease-out;
+      border: 3px solid var(--color-accent);
+    }
+    
+    .contact a:first-of-type { 
+        background: none;
+        border-color: var(--color-highlight);
+        color: var(--color-highlight);
+    }
+
+    .contact a:hover {
+      background: var(--color-highlight);
+      color: var(--color-bg-dark);
+      border-color: var(--color-highlight);
+      transform: scale(1.1) rotate(1deg);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 1rem;
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 300;
+    }
+
+    /* --- Media Queries (Responsiveness) --- */
+    @media(max-width: 900px) {
+      header {
+        flex-wrap: wrap;
+        padding: 15px 5%;
+      }
+      .logo-container {
+        flex-grow: 1;
+      }
+      .lang-switcher {
+          order: 3;
+          width: 100%;
+          text-align: center;
+          margin-top: 15px;
+          margin-left: 0;
+      }
+      nav {
+        order: 2;
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        margin: 0;
+      }
+      section {
+        padding: 80px 5%;
+      }
+      .contact a {
+        display: block;
+        margin: 15px auto;
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="575316116_17844842079608183_5790726124776916785_n.jpg" alt="Social Mind Logo">
+      <span data-en="Social Mind Studio" data-bs="Social Mind Studio">Social Mind Studio</span>
+    </div>
+    <nav>
+      <a href="#about" data-en="About" data-bs="O nama">About</a>
+      <a href="#team" data-en="Team" data-bs="Tim">Team</a>
+      <a href="#services" data-en="Services" data-bs="Usluge">Services</a>
+      <a href="#contact" data-en="Contact" data-bs="Kontakt">Kontakt</a>
+    </nav>
+    <div class="lang-switcher">
+        <button id="lang-toggle" data-current-lang="en">Switch to Bosanski</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 data-en="Inspiring Digital Presence, Modern Growth" data-bs="Inspirativno Digitalno Prisustvo, Moderni Rast">Inspiring Digital Presence, Modern Growth</h1>
+    <p 
+        data-en="We help your brand grow through <span class='highlight'>creative web design</span> and <span class='highlight'>data-driven social media marketing</span>. We are the architects of your online success." 
+        data-bs="Pomažemo vašem brendu da raste kroz <span class='highlight'>kreativni web dizajn</span> i <span class='highlight'>marketing na društvenim mrežama vođen podacima</span>. Mi smo arhitekti vašeg online uspjeha."
+    >We help your brand grow through <span class='highlight'>creative web design</span> and <span class='highlight'>data-driven social media marketing</span>. We are the architects of your online success.</p>
+  </section>
+
+  <section id="about">
+    <h2 data-en="About Our Digital Craft & Philosophy" data-bs="O Našem Digitalnom Zanatu i Filozofiji">About Our Digital Craft & Philosophy</h2>
+    <p 
+        data-en="Social Mind Studio is not just an agency; we are your dedicated <strong>growth partner</strong>. We are a creative digital powerhouse focused on <strong>modern, accessible web design</strong>, comprehensive social media management, and strategic brand development. Our core strength lies in seamlessly <strong>mixing cutting-edge creativity with advanced analytical insights</strong> to deliver outstanding and measurable results. We believe in building digital assets that not only look incredible but also perform flawlessly." 
+        data-bs="Social Mind Studio nije samo agencija; mi smo vaš posvećeni <strong>partner za rast</strong>. Mi smo kreativna digitalna sila fokusirana na <strong>moderan, pristupačan web dizajn</strong>, sveobuhvatno upravljanje društvenim mrežama i strateški razvoj brenda. Naša temeljna snaga leži u neprimjetnom <strong>miješanju najsavremenije kreativnosti s naprednim analitičkim uvidima</strong> za postizanje izvanrednih i mjerljivih rezultata. Vjerujemo u izgradnju digitalnih sredstava koja ne samo da izgledaju nevjerovatno, već i besprijekorno funkcionišu."
+    >Social Mind Studio is not just an agency; we are your dedicated **growth partner**. We are a creative digital powerhouse focused on **modern, accessible web design**, comprehensive social media management, and strategic brand development. Our core strength lies in seamlessly **mixing cutting-edge creativity with advanced analytical insights** to deliver outstanding and measurable results. We believe in building digital assets that not only look incredible but also perform flawlessly.</p>
+  </section>
+
+  <section id="team">
+    <h2 data-en="Meet the Creative Minds" data-bs="Upoznajte Kreativne Umove">Meet the Creative Minds</h2>
+    <p data-en="Our dedicated team is a perfect blend of technical expertise and creative strategy, led by our founders." data-bs="Naš posvećeni tim je savršen spoj tehničke stručnosti i kreativne strategije, predvođen našim osnivačima.">Our dedicated team is a perfect blend of technical expertise and creative strategy, led by our founders.</p>
+    <div class="team-grid">
+        <div class="team-card">
+            <h3 data-en="Safi" data-bs="Safi">Safi</h3>
+            <h4 data-en="Owner & Certified Marketer" data-bs="Vlasnik i Certificirani Marketer">Owner & Certified Marketer</h4>
+            <p 
+                data-en="A certified digital strategist and owner, focused on driving measurable growth and crafting high-impact social media campaigns that deliver exceptional ROI." 
+                data-bs="Certificirani digitalni strateg i vlasnik, fokusiran na ostvarivanje mjerljivog rasta i kreiranje visoko-utjecajnih kampanja na društvenim mrežama koje donose izuzetan povrat ulaganja."
+            >A certified digital strategist and owner, focused on driving measurable growth and crafting high-impact social media campaigns that deliver exceptional ROI.</p>
+        </div>
+        <div class="team-card">
+            <h3 data-en="Kadra" data-bs="Kadra">Kadra</h3>
+            <h4 data-en="Co-Owner & Professional Web Developer" data-bs="Suvlasnik i Profesionalni Web Developer">Co-Owner & Professional Web Developer</h4>
+            <p 
+                data-en="A professional developer and co-owner who engineers fast, accessible, and user-centric websites, ensuring every digital platform is built for peak performance." 
+                data-bs="Profesionalni developer i suvlasnik koji projektuje brze, pristupačne i korisnički-orijentisane web stranice, osiguravajući da je svaka digitalna platforma napravljena za vrhunske performanse."
+            >A professional developer and co-owner who engineers fast, accessible, and user-centric websites, ensuring every digital platform is built for peak performance.</p>
+        </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2 data-en="Our Core Services: The Pillars of Your Success" data-bs="Naše Osnovne Usluge: Stubovi Vašeg Uspjeha">Our Core Services: The Pillars of Your Success</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3 data-en="Web Development" data-bs="Web Razvoj">Web Development</h3>
+            <p 
+                data-en="We don't just build websites, we engineer high-performance platforms. Crafting fast, responsive, and <strong>SEO-friendly websites</strong> using the latest technologies that are guaranteed to convert visitors into loyal customers. <strong>Speed and accessibility are paramount.</strong>" 
+                data-bs="Ne gradimo samo web stranice, mi projektujemo platforme visokih performansi. Izrađujemo brze, responzivne i <strong>SEO-optimizirane web stranice</strong> koristeći najnovije tehnologije koje garantovano pretvaraju posjetioce u lojalne klijente. <strong>Brzina i pristupačnost su najvažniji.</strong>"
+            >We don't just build websites, we engineer high-performance platforms. Crafting fast, responsive, and **SEO-friendly websites** using the latest technologies that are guaranteed to convert visitors into loyal customers. **Speed and accessibility are paramount.**</p>
+        </div>
+        <div class="service-card">
+            <h3 data-en="Social Media Marketing" data-bs="Marketing na Društvenim Mrežama">Social Media Marketing</h3>
+            <p 
+                data-en="From content ideation to execution, we offer full-service management, dynamic content strategy, and precise <strong>paid advertising campaigns</strong> across all major platforms (Instagram, TikTok, Facebook). We turn clicks into <strong>tangible ROI</strong>." 
+                data-bs="Od ideje do izvršenja sadržaja, nudimo potpuno upravljanje uslugama, dinamičnu strategiju sadržaja i precizne <strong>kampanje plaćenog oglašavanja</strong> na svim glavnim platformama (Instagram, TikTok, Facebook). Pretvaramo klikove u <strong>opipljiv ROI</strong> (Povrat Investicije)."
+            >From content ideation to execution, we offer full-service management, dynamic content strategy, and precise **paid advertising campaigns** across all major platforms (Instagram, TikTok, Facebook). We turn clicks into **tangible ROI**.</p>
+        </div>
+        <div class="service-card">
+            <h3 data-en="Branding & Strategy" data-bs="Brendiranje i Strategija">Branding & Strategy</h3>
+            <p 
+                data-en="We define your authentic voice, develop your memorable visual identity, and solidify your market positioning. We craft comprehensive strategies that build a recognizable and <strong>trusted brand</strong> that stands out in a crowded digital landscape. <strong>It starts with a vision.</strong>" 
+                data-bs="Definišemo vaš autentični glas, razvijamo vaš prepoznatljiv vizualni identitet i učvršćujemo vašu tržišnu poziciju. Kreiramo sveobuhvatne strategije koje grade prepoznatljiv i <strong>pouzdan brend</strong> koji se ističe u pretrpanom digitalnom okruženju. <strong>Sve počinje vizijom.</strong>"
+            >We define your authentic voice, develop your memorable visual identity, and solidify your market positioning. We craft comprehensive strategies that build a recognizable and **trusted brand** that stands out in a crowded digital landscape. **It starts with a vision.**</p>
+        </div>
+        <div class="service-card">
+            <h3 data-en="Video Content Creation" data-bs="Kreiranje Video Sadržaja">Video Content Creation</h3>
+            <p 
+                data-en="Video is king! We specialize in producing highly engaging short-form and long-form video content optimized specifically for <strong>viral potential</strong> and sustainable social media growth. <strong>Professional quality that captivates your audience.</strong>" 
+                data-bs="Video je kralj! Specijalizovani smo za produkciju visoko angažujućeg kratkog i dugog video sadržaja optimiziranog posebno za <strong>viralni potencijal</strong> i održivi rast društvenih mreža. <strong>Profesionalni kvalitet koji osvaja vašu publiku.</strong>"
+            >Video is king! We specialize in producing highly engaging short-form and long-form video content optimized specifically for **viral potential** and sustainable social media growth. **Professional quality that captivates your audience.**</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 data-en="Ready to Elevate Your Brand and Dominate Digitally?" data-bs="Spremni da Podignete Svoj Brend i Digitalno Dominirate?">Ready to Elevate Your Brand and Dominate Digitally?</h2>
+    <a href="mailto:socialmind.contact@gmail.com" data-en="Send an Email Inquiry" data-bs="Pošaljite Upit Putem E-maila">Send an Email Inquiry</a>
+    <a href="https://www.instagram.com/social_mind_studio" target="_blank" data-en="Connect on Instagram" data-bs="Povežite se na Instagramu">Connect on Instagram</a>
+    <a href="https://www.tiktok.com/@social.mind.studio" target="_blank" data-en="Find Us on TikTok" data-bs="Pronađite Nas na TikToku">Find Us on TikTok</a>
+  </section>
+
+  <footer>
+    <p data-en="&copy; 2025 Social Mind Studio. All rights reserved. Powered by Creative Minds." data-bs="&copy; 2025 Social Mind Studio. Sva prava zadržana. Pokreću Kreativni Umovi.">&copy; 2025 Social Mind Studio. All rights reserved. Powered by Creative Minds.</p>
+  </footer>
+
+  <script>
+    // --- Intersection Observer for scroll-based animation ---
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // --- Language Switcher Logic (Simplified for HTML preservation) ---
+    const langToggle = document.getElementById('lang-toggle');
+    // Select all elements with data-en or data-bs attributes
+    const translatableElements = document.querySelectorAll('[data-en], [data-bs]');
+
+    langToggle.addEventListener('click', () => {
+        const currentLang = langToggle.getAttribute('data-current-lang');
+        const newLang = currentLang === 'en' ? 'bs' : 'en';
+
+        // Update all translatable elements
+        translatableElements.forEach(element => {
+            const translation = element.getAttribute(`data-${newLang}`);
+            
+            if (translation) {
+                // IMPORTANT FIX: Use innerHTML for ALL translatable elements.
+                // This ensures HTML tags like <strong> and <span> are rendered, not stripped.
+                element.innerHTML = translation;
+            }
+        });
+
+        // Update button text and state
+        langToggle.textContent = newLang === 'en' ? 'Switch to Bosanski' : 'Switch to English';
+        langToggle.setAttribute('data-current-lang', newLang);
+        document.documentElement.lang = newLang;
+    });
+    
+    // --- Initial Language Load ---
+    // On page load, apply the English HTML content to elements that need it (since lang is 'en')
+    // This is necessary because the data-* attributes contain the HTML now.
+    document.addEventListener('DOMContentLoaded', () => {
+        const initialLang = 'en';
+        translatableElements.forEach(element => {
+            const translation = element.getAttribute(`data-${initialLang}`);
+            // Only update elements that have rich HTML in their data-* attributes (like p tags)
+            if (element.tagName === 'P' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'SPAN') {
+                 if (translation) {
+                    element.innerHTML = translation;
+                }
+            }
+        });
+    });
+
+  </script>
+</body>
+</html>
