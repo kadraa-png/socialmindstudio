@@ -5,7 +5,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 
 type ScrollRevealProps = {
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof HTMLElementTagNameMap;
   children: ReactNode;
   className?: string;
   delay?: number;
@@ -21,7 +21,7 @@ export function ScrollReveal({
   style,
   ...rest
 }: ScrollRevealProps) {
-  const ComponentTag = (as ?? "div") as keyof JSX.IntrinsicElements;
+  const ComponentTag = (as ?? "div") as keyof HTMLElementTagNameMap;
   const elementRef = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
