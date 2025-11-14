@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, ElementType, ReactNode, Ref } from "react";
 import { useEffect, useRef, useState } from "react";
 
 type ScrollRevealProps = {
-  as?: keyof HTMLElementTagNameMap;
+  as?: ElementType;
   children: ReactNode;
   className?: string;
   delay?: number;
@@ -21,7 +21,7 @@ export function ScrollReveal({
   style,
   ...rest
 }: ScrollRevealProps) {
-  const ComponentTag = (as ?? "div") as keyof HTMLElementTagNameMap;
+  const ComponentTag = (as ?? "div") as ElementType;
   const elementRef = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -48,7 +48,7 @@ export function ScrollReveal({
 
   return (
     <ComponentTag
-      ref={elementRef as never}
+      ref={elementRef as Ref<HTMLElement>}
       {...rest}
       className={cn("section-fade", isVisible && "visible", className)}
       style={{
