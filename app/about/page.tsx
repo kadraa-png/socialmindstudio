@@ -100,92 +100,95 @@ export default function AboutPage() {
   const { lang, toggle } = usePreferredLanguage();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <SiteHeader lang={lang} onToggleLang={toggle} />
-      <main className="mx-auto flex max-w-5xl flex-col gap-16 px-6 pb-24">
-        <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.5em] text-white/60">
-            {lang === "en" ? "About" : "O nama"}
-          </p>
-          <h1 className="text-4xl font-semibold leading-tight text-white">
-            {lang === "en"
-              ? "A boutique studio from Sarajevo shaping global launches."
-              : "Boutique studio iz Sarajeva koji oblikuje globalna lansiranja."}
-          </h1>
-          <p className="text-lg text-white/75">{missionCopy[lang]}</p>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-          >
-            {lang === "en" ? "View capabilities" : "Pogledaj sposobnosti"}
-            <IconArrowUpRight className="h-4 w-4" />
-          </Link>
-        </section>
+    <div className="relative min-h-screen overflow-hidden bg-[#2e3fc4] text-white">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(255,214,107,0.4),transparent_48%),radial-gradient(circle_at_82%_12%,rgba(255,111,156,0.35),transparent_48%),radial-gradient(circle_at_60%_80%,rgba(62,240,197,0.32),transparent_42%)]" />
+      <div className="relative z-10 space-y-10 pb-10">
+        <SiteHeader lang={lang} onToggleLang={toggle} />
+        <main className="mx-auto flex max-w-5xl flex-col gap-16 px-6 pb-24">
+          <section className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.5em] text-white/60">
+              {lang === "en" ? "About" : "O nama"}
+            </p>
+            <h1 className="text-4xl font-semibold leading-tight text-white">
+              {lang === "en"
+                ? "A boutique studio from Sarajevo shaping global launches."
+                : "Boutique studio iz Sarajeva koji oblikuje globalna lansiranja."}
+            </h1>
+            <p className="text-lg text-white/75">{missionCopy[lang]}</p>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            >
+              {lang === "en" ? "View capabilities" : "Pogledaj sposobnosti"}
+              <IconArrowUpRight className="h-4 w-4" />
+            </Link>
+          </section>
 
-        <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.5em] text-white/60">
-            {lang === "en" ? "Timeline" : "Vremenska linija"}
-          </p>
-          <div className="space-y-4">
-            {timeline.map((entry) => (
-              <article
-                key={entry.year}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6"
-              >
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm uppercase tracking-[0.4em] text-white/60">
-                    {entry.year}
-                  </span>
-                  <h3 className="text-lg font-semibold text-white">
-                    {entry.title[lang]}
-                  </h3>
-                </div>
-                <p className="mt-3 text-sm text-white/75">{entry.copy[lang]}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.5em] text-white/60">
-            {lang === "en" ? "Values" : "Vrijednosti"}
-          </p>
-          <div className="grid gap-6 md:grid-cols-3">
-            {values.map((value) => {
-              const Icon = value.icon;
-              return (
+          <section className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.5em] text-white/60">
+              {lang === "en" ? "Timeline" : "Vremenska linija"}
+            </p>
+            <div className="space-y-4">
+              {timeline.map((entry) => (
                 <article
-                  key={value.title.en}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-6 text-white/80"
+                  key={entry.year}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6"
                 >
-                  <Icon className="h-8 w-8 text-sky-200" />
-                  <h3 className="mt-4 text-xl font-semibold text-white">
-                    {value.title[lang]}
-                  </h3>
-                  <p className="mt-2 text-sm">{value.copy[lang]}</p>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-sm uppercase tracking-[0.4em] text-white/60">
+                      {entry.year}
+                    </span>
+                    <h3 className="text-lg font-semibold text-white">
+                      {entry.title[lang]}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/75">{entry.copy[lang]}</p>
                 </article>
-              );
-            })}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
 
-        <section className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.5em] text-white/60">
-            {lang === "en" ? "Leadership" : "Liderstvo"}
-          </p>
-          <div className="grid gap-6 md:grid-cols-2">
-            {teamLeads.map((lead) => (
-              <PortraitPlaceholder
-                key={lead.name}
-                image={lead.image}
-                name={lead.name}
-                role={lead.role[lang]}
-                description={lead.note[lang]}
-              />
-            ))}
-          </div>
-        </section>
-      </main>
+          <section className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.5em] text-white/60">
+              {lang === "en" ? "Values" : "Vrijednosti"}
+            </p>
+            <div className="grid gap-6 md:grid-cols-3">
+              {values.map((value) => {
+                const Icon = value.icon;
+                return (
+                  <article
+                    key={value.title.en}
+                    className="rounded-3xl border border-white/10 bg-white/5 p-6 text-white/80"
+                  >
+                    <Icon className="h-8 w-8 text-sky-200" />
+                    <h3 className="mt-4 text-xl font-semibold text-white">
+                      {value.title[lang]}
+                    </h3>
+                    <p className="mt-2 text-sm">{value.copy[lang]}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.5em] text-white/60">
+              {lang === "en" ? "Leadership" : "Liderstvo"}
+            </p>
+            <div className="grid gap-6 md:grid-cols-2">
+              {teamLeads.map((lead) => (
+                <PortraitPlaceholder
+                  key={lead.name}
+                  image={lead.image}
+                  name={lead.name}
+                  role={lead.role[lang]}
+                  description={lead.note[lang]}
+                />
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
