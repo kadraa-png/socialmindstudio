@@ -22,7 +22,7 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-6 text-sm text-white/80 sm:flex-row sm:items-center sm:justify-between",
+        "mx-auto flex w-full max-w-6xl flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-sm text-white/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(3,6,23,0.35)] sm:flex-row sm:items-center sm:justify-between",
         className,
       )}
     >
@@ -45,7 +45,7 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-full px-3 py-1 text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            className="rounded-full px-3 py-1 text-white/70 transition hover:text-[#ffd66b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd66b]/50"
           >
             {link.label[lang]}
           </Link>
@@ -56,13 +56,13 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
         <button
           type="button"
           onClick={onToggleLang}
-          className="rounded-full border border-white/30 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/80 transition hover:border-white hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          className="rounded-full border border-white/25 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/85 transition hover:border-white hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3ef0c5]/60"
         >
           {lang === "en" ? "Bosanski" : "English"}
         </button>
         <Link
           href="/services"
-          className="rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-slate-900 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          className="rounded-full bg-gradient-to-r from-[#2e3fc4] via-[#5c6dff] to-[#ff6f9c] px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white shadow-lg shadow-[#2e3fc4]/40 transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffd66b]/70"
         >
           {lang === "en" ? "Start" : "Kreni"}
         </Link>

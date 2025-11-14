@@ -3,9 +3,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --brand-primary: #2647ff;
-  --brand-secondary: #061642;
-  --brand-accent: #5de0ff;
+  --brand-primary: #2e3fc4;
+  --brand-primary-soft: #4b57ff;
+  --brand-primary-deep: #111b67;
+  --brand-secondary: #050c26;
+  --brand-accent: #ff6f9c;
+  --brand-accent-warm: #ffd66b;
+  --brand-accent-mint: #3ef0c5;
+  --brand-accent-violet: #915bff;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -86,9 +91,12 @@ html {
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at 15% 20%, #1d3bff33, transparent 45%),
-    radial-gradient(circle at 80% 0%, #5de0ff22, transparent 35%),
-    linear-gradient(135deg, var(--brand-secondary), #0a1f5f, var(--brand-primary));
+  background-color: var(--brand-primary);
+  background-image:
+    radial-gradient(circle at 12% 20%, color-mix(in srgb, var(--brand-primary-soft) 65%, transparent) 0%, transparent 52%),
+    radial-gradient(circle at 82% 15%, color-mix(in srgb, var(--brand-accent) 55%, transparent) 0%, transparent 45%),
+    radial-gradient(circle at 65% 80%, color-mix(in srgb, var(--brand-accent-mint) 45%, transparent) 0%, transparent 40%),
+    linear-gradient(125deg, var(--brand-primary-deep), color-mix(in srgb, var(--brand-primary) 80%, var(--brand-secondary) 20%) 40%, var(--brand-accent-violet) 85%);
   font-family: var(--font-sans, "Outfit", sans-serif);
 }
 
@@ -96,6 +104,7 @@ body {
   opacity: 0;
   transform: translateY(48px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
 }
 
 .section-fade.visible {
@@ -104,8 +113,13 @@ body {
 }
 
 .blur-panel {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand-primary-deep) 85%, transparent),
+      color-mix(in srgb, var(--brand-primary) 45%, transparent)
+    ),
+    rgba(7, 11, 30, 0.8);
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 55%, rgba(255, 255, 255, 0.2));
   border-radius: 1.5rem;
   box-shadow: 0 25px 70px rgba(5, 13, 36, 0.65);
   backdrop-filter: blur(18px);
@@ -145,7 +159,7 @@ body {
   left: 10%;
   width: 180px;
   height: 180px;
-  background: #4c7bff;
+  background: color-mix(in srgb, var(--brand-primary) 70%, var(--brand-accent-violet) 30%);
 }
 
 .orb.orb-two {
@@ -153,7 +167,7 @@ body {
   right: 15%;
   width: 220px;
   height: 220px;
-  background: #5de0ff;
+  background: color-mix(in srgb, var(--brand-accent-mint) 60%, var(--brand-accent-warm) 20%);
   animation-delay: 2.5s;
 }
 

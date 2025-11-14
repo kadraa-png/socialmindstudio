@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteHeader } from "@/components/site-header";
 import type { Lang } from "@/lib/i18n";
 import { usePreferredLanguage } from "@/lib/use-language";
@@ -101,6 +102,13 @@ const services: Service[] = [
   },
 ];
 
+const serviceGradients = [
+  "from-[#11184d]/85 via-[#2e3fc4]/55 to-[#3ef0c5]/20",
+  "from-[#1b1f5f]/85 via-[#915bff]/45 to-[#ffd66b]/20",
+  "from-[#101433]/90 via-[#2e3fc4]/45 to-[#ff6f9c]/20",
+  "from-[#0f1438]/90 via-[#2e3fc4]/40 to-[#ffd66b]/18",
+] as const;
+
 const processSteps: { title: Record<Lang, string>; copy: Record<Lang, string> }[] = [
   {
     title: { en: "01. Deep dive", bs: "01. Dubinsko istraživanje" },
@@ -129,13 +137,15 @@ export default function ServicesPage() {
   const { lang, toggle } = usePreferredLanguage();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="relative min-h-screen overflow-hidden bg-[#2e3fc4] text-white">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_20%,rgba(255,214,107,0.4),transparent_45%),radial-gradient(circle_at_80%_12%,rgba(255,111,156,0.35),transparent_45%),radial-gradient(circle_at_60%_80%,rgba(62,240,197,0.35),transparent_40%)]" />
       <SiteHeader lang={lang} onToggleLang={toggle} />
-      <main className="mx-auto flex max-w-6xl flex-col gap-16 px-6 pb-24">
-        <section className="space-y-6">
+      <main className="relative mx-auto flex max-w-6xl flex-col gap-16 px-6 pb-24">
+        <ScrollReveal as="section" className="space-y-6">
           <p className="text-xs uppercase tracking-[0.5em] text-white/60">
             {lang === "en" ? "Services" : "Usluge"}
           </p>
+          <div className="h-1 w-32 rounded-full bg-gradient-to-r from-[#ffd66b] via-[#3ef0c5] to-[#ff6f9c]" />
           <h1 className="text-4xl font-semibold leading-tight text-white">
             {lang === "en"
               ? "Choose the layer you need, or stack them for full momentum."
@@ -146,17 +156,20 @@ export default function ServicesPage() {
               ? "Every engagement includes a dedicated producer, async support, and a live command hub so nothing slips."
               : "Svaki angažman uključuje dedicated producenta, async podršku i live command hub kako ništa ne bi iskliznulo."}
           </p>
-        </section>
+        </ScrollReveal>
 
-        <section className="grid gap-6 md:grid-cols-2">
-          {services.map((service) => {
+        <ScrollReveal as="section" className="grid gap-6 md:grid-cols-2">
+          {services.map((service, index) => {
             const Icon = service.icon;
+            const gradient = serviceGradients[index % serviceGradients.length];
             return (
               <article
                 key={service.title.en}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 text-white/80"
+                className={`rounded-3xl border border-white/10 bg-gradient-to-br ${gradient} p-6 text-white/85 shadow-[0_25px_45px_rgba(3,6,23,0.45)]`}
               >
-                <Icon className="h-8 w-8 text-sky-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
+                  <Icon className="h-6 w-6" />
+                </div>
                 <h2 className="mt-4 text-2xl font-semibold text-white">
                   {service.title[lang]}
                 </h2>
@@ -164,7 +177,7 @@ export default function ServicesPage() {
                 <ul className="mt-4 space-y-2 text-sm">
                   {service.deliverables[lang].map((item) => (
                     <li key={item} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-sky-300" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#3ef0c5] to-[#ffd66b]" />
                       {item}
                     </li>
                   ))}
@@ -172,9 +185,13 @@ export default function ServicesPage() {
               </article>
             );
           })}
-        </section>
+        </ScrollReveal>
 
-        <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#131b38] via-[#1a2752] to-[#1d3181] p-8 text-white md:grid-cols-3">
+        <ScrollReveal
+          as="section"
+          className="grid gap-6 rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_10%_20%,rgba(255,214,107,0.35),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(62,240,197,0.3),transparent_45%),linear-gradient(120deg,#111744,#1b2780,#2e3fc4)] p-8 text-white md:grid-cols-3"
+          delay={120}
+        >
           {processSteps.map((step) => (
             <div key={step.title.en}>
               <p className="text-xs uppercase tracking-[0.5em] text-white/60">
@@ -183,7 +200,7 @@ export default function ServicesPage() {
               <p className="mt-3 text-sm text-white/80">{step.copy[lang]}</p>
             </div>
           ))}
-        </section>
+        </ScrollReveal>
       </main>
     </div>
   );
