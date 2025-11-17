@@ -50,7 +50,7 @@ const heroTitle: Record<Lang, string> = {
 
 const heroCopy: Record<Lang, string> = {
   en: "We craft minimal, data-backed websites and social ecosystems for founders who need clarity, velocity, and results without the clutter.",
-  bs: "Gradimo minimalističke, podacima vođene web i social ekosisteme za brendove kojima trebaju jasnoća, brzina i rezultati bez buke.",
+  bs: "Gradimo minimalističke, podacima vođene web i društvene ekosisteme za brendove kojima trebaju jasnoća, brzina i rezultati bez buke.",
 };
 
 const stats: { value: string; label: Record<Lang, string> }[] = [
@@ -65,7 +65,7 @@ const stats: { value: string; label: Record<Lang, string> }[] = [
     value: "4.8x",
     label: {
       en: "Avg ROAS across paid + organic",
-      bs: "Prosječni ROAS kroz plaćeni + organski",
+      bs: "Prosječni ROAS kroz plaćene i organske kanale",
     },
   },
   {
@@ -94,7 +94,7 @@ const capabilities: Capability[] = [
     icon: IconSparkles,
     title: {
       en: "Brand direction",
-      bs: "Brend smjer",
+      bs: "Smjer brenda",
     },
     body: {
       en: "Positioning, messaging, and creative systems that feel modern but timeless.",
@@ -141,7 +141,7 @@ const microProjects: {
     metric: "+212% ROAS",
     copy: {
       en: "Unified cart experience and automated drop calendar for a calmer launch cycle.",
-      bs: "Ujedinjen checkout i automatiziran kalendar dropova za smireniji launch ciklus.",
+      bs: "Objedinjeni checkout i automatizovan kalendar dropova za smireniji ciklus lansiranja.",
     },
   },
   {
@@ -149,7 +149,7 @@ const microProjects: {
     metric: "6wk rollout",
     copy: {
       en: "Destination storytelling plus micro-sites that stretched seasonal demand.",
-      bs: "Storytelling destinacije i microsite kampanje koje su produžile sezonsku potražnju.",
+      bs: "Storytelling za destinacije i microsite kampanje koje su produžile sezonsku potražnju.",
     },
   },
   {
@@ -157,7 +157,7 @@ const microProjects: {
     metric: "5 markets",
     copy: {
       en: "Live dashboards and content guardrails to align product, web, and comms.",
-      bs: "Live dashboardi i guardrails za usklađivanje produkta, weba i komunikacije.",
+      bs: "Live dashboardi i smjernice za usklađivanje proizvoda, weba i komunikacije.",
     },
   },
 ];
@@ -166,21 +166,21 @@ const heroPills: { label: Record<Lang, string>; gradient: string }[] = [
   {
     label: {
       en: "Commerce sprints",
-      bs: "Commerce sprintovi",
+      bs: "Komercijalni sprintovi",
     },
     gradient: "from-[#ffd66b]/80 to-[#ff6f9c]/80",
   },
   {
     label: {
       en: "Travel launches",
-      bs: "Travel lansiranja",
+      bs: "Lansiranja u turizmu",
     },
     gradient: "from-[#3ef0c5]/80 to-[#2e3fc4]/80",
   },
   {
     label: {
       en: "Finance playbooks",
-      bs: "Finansijski playbook",
+      bs: "Finansijski vodiči",
     },
     gradient: "from-[#915bff]/80 to-[#ff6f9c]/80",
   },
@@ -199,7 +199,7 @@ const contactLinks = [
     href: "https://www.instagram.com/social_mind_studio",
     note: {
       en: "Quick moodboards & progress drops.",
-      bs: "Brzi moodboardovi i updateovi.",
+      bs: "Brzi moodboardovi i ažuriranja.",
     },
   },
   {
@@ -208,7 +208,7 @@ const contactLinks = [
     href: "https://www.tiktok.com/@social.mind.studio",
     note: {
       en: "Behind-the-scenes and growth ideas.",
-      bs: "Iza scene i growth ideje.",
+      bs: "Iza scene i ideje za rast.",
     },
   },
   {
@@ -241,7 +241,7 @@ export default function Home() {
             <ScrollReveal as="div" className="space-y-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.5em] text-white/70">
-                  {lang === "en" ? "Studio update" : "Studijski update"}
+                  {lang === "en" ? "Studio update" : "Novosti studija"}
                 </p>
                 <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">
                   {heroTitle[lang]}
@@ -301,7 +301,7 @@ export default function Home() {
             >
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-[0.5em] text-white/70">
-                  {lang === "en" ? "Workflow" : "Workflow"}
+                  {lang === "en" ? "Workflow" : "Tok rada"}
                 </p>
                 <p className="mt-3 text-2xl font-semibold text-white">
                   {lang === "en"
@@ -311,8 +311,8 @@ export default function Home() {
                 <ul className="mt-4 space-y-2 text-sm text-white/80">
                   {[
                     lang === "en" ? "Live QA for every post & page" : "Live QA za svaku objavu i stranicu",
-                    lang === "en" ? "Creator pods + media buying loops" : "Kreator podovi + media buying petlje",
-                    lang === "en" ? "Weekly retro with action items" : "Sedmični retro sa akcijama",
+                    lang === "en" ? "Creator pods + media buying loops" : "Kreatorski podovi + oglašivačke petlje",
+                    lang === "en" ? "Weekly retro with action items" : "Sedmični retro sa zadacima",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#3ef0c5] to-[#ffd66b]" />
@@ -382,6 +382,8 @@ export default function Home() {
                 <PortraitPlaceholder
                   key={lead.name}
                   image={lead.image}
+                  imageWidth={lead.imageWidth}
+                  imageHeight={lead.imageHeight}
                   name={lead.name}
                   role={lead.role[lang]}
                   description={lead.note[lang]}
@@ -398,7 +400,7 @@ export default function Home() {
               <h2 className="text-3xl font-semibold text-white">
                 {lang === "en"
                   ? "Momentum across commerce, finance, and travel."
-                  : "Momentum kroz e‑commerce, finansije i turizam."}
+                  : "Zamah kroz e‑commerce, finansije i turizam."}
               </h2>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
@@ -432,7 +434,7 @@ export default function Home() {
               <h2 className="text-3xl font-semibold">
                 {lang === "en"
                   ? "Tell us what needs to ship next."
-                  : "Recite nam šta sljedeće treba da se lansira."}
+                  : "Recite nam šta sljedeće treba lansirati."}
               </h2>
               <p className="text-sm text-white/80">
                 {lang === "en"

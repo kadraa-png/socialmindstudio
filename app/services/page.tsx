@@ -21,7 +21,7 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: { en: "Brand Direction Sprint", bs: "Brand smjer sprint" },
+    title: { en: "Brand Direction Sprint", bs: "Sprint usmjeravanja brenda" },
     summary: {
       en: "Positioning, tone, and creative systems built in four focused weeks.",
       bs: "Pozicioniranje, ton i kreativni sistemi kompletirani u četiri fokusirane sedmice.",
@@ -34,7 +34,7 @@ const services: Service[] = [
         "Mood, typography, and art direction",
       ],
       bs: [
-        "Bilješke publike i konkurencije",
+        "Bilješke o publici i konkurenciji",
         "Matrica poruka i voice kit",
         "Mood, tipografija i art direkcija",
       ],
@@ -54,17 +54,17 @@ const services: Service[] = [
         "Performance budget & accessibility report",
       ],
       bs: [
-        "Informaciona arhitektura + wireframe",
-        "Biblioteke komponenti + CMS setup",
-        "Budžet performansi i accessibility izvještaj",
+        "Informaciona arhitektura + wireframeovi",
+        "Biblioteke komponenti + CMS postavke",
+        "Budžet performansi i izvještaj o pristupačnosti",
       ],
     },
   },
   {
-    title: { en: "Social & Creator Ops", bs: "Social i creator operacije" },
+    title: { en: "Social & Creator Ops", bs: "Društvene i kreatorske operacije" },
     summary: {
       en: "Content systems, creator pods, and paid loops handled end-to-end.",
-      bs: "Sistemi sadržaja, kreatorski podovi i plaćene petlje odrađeni end-to-end.",
+      bs: "Sistemi sadržaja, kreatorski podovi i plaćene petlje isporučeni od početka do kraja.",
     },
     icon: IconSpeakerphone,
     deliverables: {
@@ -75,8 +75,8 @@ const services: Service[] = [
       ],
       bs: [
         "Urednički kalendar + kreativni brifovi",
-        "Sourcing kreatora i UGC direkcija",
-        "Spoj sa plaćenim kanalima + izvještavanje",
+        "Pronalaženje kreatora i UGC smjernice",
+        "Uparivanje s plaćenim kanalima + izvještavanje",
       ],
     },
   },
@@ -95,7 +95,7 @@ const services: Service[] = [
       ],
       bs: [
         "Okvir mjerenja i KPI-jevi",
-        "Backlog eksperimenata i prioriteti",
+        "Backlog eksperimenata i prioritizacija",
         "Sedmični sažeci signala",
       ],
     },
@@ -121,14 +121,14 @@ const processSteps: { title: Record<Lang, string>; copy: Record<Lang, string> }[
     title: { en: "02. Build", bs: "02. Izrada" },
     copy: {
       en: "Co-create assets in FigJam, Notion, and Webflow/Next.",
-      bs: "Kreiranje asseta u FigJam-u, Notionu i Webflow/Next stacku.",
+      bs: "Sukreiranje asseta u FigJam-u, Notionu i Webflow/Next stacku.",
     },
   },
   {
     title: { en: "03. Iterate", bs: "03. Iteracija" },
     copy: {
       en: "Weekly retros, dashboards, and performance reviews.",
-      bs: "Sedmični retro, dashboardi i performance pregledi.",
+      bs: "Sedmični retroi, dashboardi i pregledi performansi.",
     },
   },
 ];
@@ -149,12 +149,12 @@ export default function ServicesPage() {
           <h1 className="text-4xl font-semibold leading-tight text-white">
             {lang === "en"
               ? "Choose the layer you need, or stack them for full momentum."
-              : "Odaberite sloj koji vam treba ili ih spojite za puni momentum."}
+              : "Odaberite sloj koji vam treba ili ih spojite za puni zamah."}
           </h1>
           <p className="text-lg text-white/75">
             {lang === "en"
               ? "Every engagement includes a dedicated producer, async support, and a live command hub so nothing slips."
-              : "Svaki angažman uključuje dedicated producenta, async podršku i live command hub kako ništa ne bi iskliznulo."}
+              : "Svaki angažman uključuje posvećenog producenta, asinhronu podršku i live komandni centar kako ništa ne bi iskliznulo."}
           </p>
         </ScrollReveal>
 
