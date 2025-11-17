@@ -5,6 +5,8 @@ export type TeamLead = {
   role: Record<Lang, string>;
   note: Record<Lang, string>;
   image: string;
+  imageWidth: number;
+  imageHeight: number;
 };
 
 export const teamLeads: TeamLead[] = [
@@ -19,6 +21,8 @@ export const teamLeads: TeamLead[] = [
       bs: "Spaja istraživanje, plaćene kanale i zajednicu kako bi lansiranja bila filmska i mjerljiva.",
     },
     image: "/safi.png",
+    imageWidth: 379,
+    imageHeight: 542,
   },
   {
     name: "Kadra",
@@ -31,5 +35,7 @@ export const teamLeads: TeamLead[] = [
       bs: "Arhitekt elegantnih sistema, osigurava pristupačnost i optimizira svaku interakciju za brzinu.",
     },
     image: "/kadra.jpg",
+    imageWidth: 1365,
+    imageHeight: 2048,
   },
 ];

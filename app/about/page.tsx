@@ -180,6 +180,8 @@ export default function AboutPage() {
                 <PortraitPlaceholder
                   key={lead.name}
                   image={lead.image}
+                  imageWidth={lead.imageWidth}
+                  imageHeight={lead.imageHeight}
                   name={lead.name}
                   role={lead.role[lang]}
                   description={lead.note[lang]}

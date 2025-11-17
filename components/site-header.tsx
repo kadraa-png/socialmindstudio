@@ -26,7 +26,7 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
         className,
       )}
     >
-      <Link href="/" className="flex items-center gap-3 text-white">
+      <Link href="/" className="flex items-center text-white">
         <Image
           src="/logo.png"
           alt="Social Mind Studio"
@@ -35,9 +35,6 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
           className="rounded-xl border border-white/20"
           priority
         />
-        <span className="text-base font-semibold uppercase tracking-[0.4em]">
-          Social Mind
-        </span>
       </Link>
 
       <nav className="flex flex-wrap items-center gap-4">

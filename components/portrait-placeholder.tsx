@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 
 type PortraitPlaceholderProps = {
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   name: string;
   role: string;
   description?: string;
@@ -16,6 +18,8 @@ export function PortraitPlaceholder({
   role,
   description,
   className,
+  imageWidth = 1200,
+  imageHeight = 1800,
 }: PortraitPlaceholderProps) {
   return (
     <article
@@ -25,12 +29,13 @@ export function PortraitPlaceholder({
       )}
     >
       <div className="pointer-events-none absolute -right-8 top-12 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
-      <div className="relative mb-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      <div className="mb-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
         <Image
           src={image}
           alt={name}
-          fill
-          className="object-cover"
+          width={imageWidth}
+          height={imageHeight}
+          className="h-auto w-full object-contain"
           sizes="(min-width: 768px) 50vw, 100vw"
           priority
         />
