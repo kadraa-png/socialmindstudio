@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 type PortraitPlaceholderProps = {
@@ -23,15 +25,15 @@ export function PortraitPlaceholder({
       )}
     >
       <div className="pointer-events-none absolute -right-8 top-12 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
-      <div className="relative mb-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f162f] via-[#1b275a] to-[#2e3fc4]/40">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-70"
-          style={{ backgroundImage: `url(${image})` }}
+      <div className="relative mb-6 h-60 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="object-cover"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#040614] via-[#090f2a]/80 to-transparent" />
-        <div className="relative flex h-full flex-col justify-end rounded-2xl p-4 text-xs uppercase tracking-[0.35em] text-white/60">
-          Upload {image}
-        </div>
       </div>
       <p className="text-xs uppercase tracking-[0.4em] text-white/60">{role}</p>
       <h3 className="mt-2 text-2xl font-semibold text-white">{name}</h3>
