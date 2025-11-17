@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "Social Mind Studio | Digital Growth Studio",
   description:
     "Social Mind Studio crafts high-performing web experiences and data-driven social media campaigns.",
+  icons: {
+    icon: "/logohead.png",
+    shortcut: "/logohead.png",
+  },
 };
 
 export default function RootLayout({

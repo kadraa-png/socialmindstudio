@@ -28,7 +28,7 @@ export function SiteHeader({ lang, onToggleLang, className }: SiteHeaderProps) {
     >
       <Link href="/" className="flex items-center gap-3 text-white">
         <Image
-          src="/logo.jpg"
+          src="/logo.png"
           alt="Social Mind Studio"
           width={44}
           height={44}

@@ -30,6 +30,6 @@ export const teamLeads: TeamLead[] = [
       en: "Architects sleek systems, ensures accessibility, and optimizes every interaction for speed.",
       bs: "Arhitekt elegantnih sistema, osigurava pristupačnost i optimizira svaku interakciju za brzinu.",
     },
-    image: "/kadra.png",
+    image: "/kadra.jpg",
   },
 ];
